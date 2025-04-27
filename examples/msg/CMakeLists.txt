@@ -1,20 +1,28 @@
 project(uorb_examples_msgs LANGUAGES NONE)
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.28)
 
 # Support IN_LIST if() operator
-cmake_policy(SET CMP0057 NEW)
+# cmake_policy(SET CMP0057 NEW)
 
-find_package(PythonInterp 3)
+# find_package(PythonInterp 3)
+find_package(Python REQUIRED COMPONENTS Interpreter)
 # We have a custom error message to tell users how to install python3.
-if (NOT PYTHONINTERP_FOUND)
+if (NOT PYTHON_FOUND)
     message(FATAL_ERROR "Python 3 not found. Please install Python 3:\n"
             "    Ubuntu: sudo apt install python3 python3-dev python3-pip\n"
             "    macOS: brew install python")
 endif ()
 
-file(GLOB msg_files
-        *.msg
-        )
+# file(GLOB msg_files
+#         *.msg
+#         )
+list(APPEND msg_files
+  example_string.msg
+  # kevin.msg
+  msg_template.msg
+  sensor_accel.msg
+  sensor_gyro.msg
+)
 
 # headers
 set(msg_out_path ${CMAKE_CURRENT_SOURCE_DIR}/uorb/topics)

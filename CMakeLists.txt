@@ -1,14 +1,14 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.28)
 
 # Set cmake_policies
-include(cmake/policy.cmake)
-use_cmake_policy()
+# include(cmake/policy.cmake)
+# use_cmake_policy()
 
 project(uorb)
 
 set(CMAKE_CXX_STANDARD 11)
 
-option(UORB_BUILD_EXAMPLES "Build examples" OFF)
+option(UORB_BUILD_EXAMPLES "Build examples" ON)
 option(UORB_BUILD_TESTS "Build tests" OFF)
 
 # Generate git version info
@@ -39,13 +39,13 @@ target_link_libraries(uorb PRIVATE pthread)
 add_subdirectory(tools/uorb_tcp_topic_listener_lib EXCLUDE_FROM_ALL)
 
 # install uorb
-install(TARGETS uorb
-        ARCHIVE DESTINATION lib)
-install(DIRECTORY include/uorb DESTINATION include)
+# install(TARGETS uorb
+#         ARCHIVE DESTINATION lib)
+# install(DIRECTORY include/uorb DESTINATION include)
 
-if (UORB_BUILD_EXAMPLES)
+# if (UORB_BUILD_EXAMPLES)
     add_subdirectory(examples)
-endif ()
+# endif ()
 
 if (UORB_BUILD_TESTS)
     include(cmake/googletest.cmake)
